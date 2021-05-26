@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import com.android.volley.Request
@@ -27,6 +28,7 @@ class SubActivity1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub1)
+
         /*
         val url = intent.getStringArrayExtra(URL)
         val arrayAdapter: ArrayAdapter<*>
@@ -47,33 +49,22 @@ class SubActivity1 : AppCompatActivity() {
             { response ->
                 //println("Response is $it")
 
+                val imageList = findViewById<ListView>(R.id.userlist)
+                val imageView =  findViewById<ImageView>(R.id.imageView)
+
                 val image_url = List(response.length()) {
                     response.getString(it)
+                    Picasso.get().load(response.getString(it)).into(imageView)
                 }
 
-                val imageList = findViewById<ListView>(R.id.userlist)
                 val listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, image_url)
                 imageList.adapter = listAdapter
-
-
-                /*
-                val ArrayAdapter = ArrayAdapter<String>(this, R.layout.item,Imageurl)
-
-
-                val userlist = findViewById<ListView>(R.id.userlist)
-                userlist.setAdapter(ArrayAdapter)
-
-
-                Imageurl.forEach{
-                    Picasso.get().load(it)
-                }
-                */
             },
-
             {})
-        queue.add(jsonArrayRequest)
 
-        // MySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest)
+            queue.add(jsonArrayRequest)
+
+            // MySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest)
     }
 }
 
