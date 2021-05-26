@@ -9,11 +9,9 @@ import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 
 
-class NewAdapter(private val context: Context,
-                 private val dataSource: List<String>) : BaseAdapter() {
+class NewAdapter(private val context: Context, private val dataSource: List<String>) : BaseAdapter() {
 
-        private val inflater: LayoutInflater
-                = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     //1
     override fun getCount(): Int {

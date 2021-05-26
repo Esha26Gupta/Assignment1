@@ -14,31 +14,26 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 //import com.example.assignment1.MySingleton.Companion.getInstance
-import com.squareup.picasso.Picasso
+//import com.squareup.picasso.Picasso
 import org.json.JSONObject
 import java.lang.reflect.Array
 import java.util.Calendar.getInstance
 
 class SubActivity1 : AppCompatActivity() {
 
-    companion object {
-        const val URL = "URL"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub1)
 
-        //val test = intent.getStringArrayExtra(URL)
-        val testurl = "https://hub.dummyapis.com/ImagesList?text=Test&noofimages=10&height=120&width=120"
+        val test = intent.getStringExtra("URL")
+        //val testurl = "https://hub.dummyapis.com/ImagesList?text=Test&noofimages=10&height=120&width=120"
 
         val queue = Volley.newRequestQueue(this@SubActivity1)
 
 
-        val jsonArrayRequest = JsonArrayRequest(Request.Method.GET, testurl, null,
+        val jsonArrayRequest = JsonArrayRequest(Request.Method.GET, test, null,
             { response ->
                 //println("Response is $it")
-
                 val imageList = findViewById<ListView>(R.id.userlist)
                 val imageView =  findViewById<ImageView>(R.id.imageView)
 
